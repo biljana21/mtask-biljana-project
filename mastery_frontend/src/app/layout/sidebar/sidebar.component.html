@@ -1,0 +1,23 @@
+<mat-nav-list>
+
+  <a mat-list-item
+     routerLink="/document"
+     routerLinkActive="active"
+     (click)="navigate.emit()">
+
+    <mat-icon>description</mat-icon>
+    <span>Dashboard</span>
+
+  </a>
+
+  <a mat-list-item
+     routerLink="/statistic"
+     routerLinkActive="active"
+     (click)="navigate.emit()">
+
+    <mat-icon>bar_chart</mat-icon>
+    <span>Statistic</span>
+
+  </a>
+
+</mat-nav-list>

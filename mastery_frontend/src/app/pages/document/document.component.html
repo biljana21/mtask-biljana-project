@@ -1,0 +1,166 @@
+<div class="header">
+
+  <button mat-raised-button (click)="fileInput.click()">
+    Choose Document
+  </button>
+
+  <input type="file" hidden #fileInput (change)="onFileSelected($event)">
+
+  <div *ngIf="selectedFile" class="file-preview">
+    Selected: {{ selectedFile.name }}
+  </div>
+
+  <button mat-raised-button color="primary"
+          (click)="uploadFile()"
+          [disabled]="!selectedFile || isUploading">
+    Upload
+  </button>
+
+</div>
+
+<div class="table-wrapper">
+
+<table mat-table [dataSource]="dataSource"
+       multiTemplateDataRows
+       class="mat-elevation-z8">
+       
+  <ng-container matColumnDef="filename">
+    <th mat-header-cell *matHeaderCellDef> File </th>
+    <td mat-cell *matCellDef="let doc">
+      {{ doc.originalFilename }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="supplier">
+    <th mat-header-cell *matHeaderCellDef> Supplier </th>
+    <td mat-cell *matCellDef="let doc">
+      {{ doc.supplier || '-' }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="number">
+    <th mat-header-cell *matHeaderCellDef> Number </th>
+    <td mat-cell *matCellDef="let doc">
+      {{ doc.documentNumber || '-' }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef> Status </th>
+    <td mat-cell *matCellDef="let doc">
+      <span class="status" [ngClass]="doc.status">
+        {{ doc.status }}
+      </span>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef> Date </th>
+    <td mat-cell *matCellDef="let doc">
+      {{ doc.issueDate | date:'dd.MM.yyyy' }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let doc" class="actions-cell">
+
+      <button mat-icon-button
+              matTooltip="Details"
+              (click)="toggleRow(doc); $event.stopPropagation()">
+        <mat-icon>
+          {{ expandedElement === doc ? 'expand_less' : 'expand_more' }}
+        </mat-icon>
+      </button>
+
+      <button mat-icon-button color="primary"
+              matTooltip="Preview"
+              (click)="preview(doc); $event.stopPropagation()">
+        <mat-icon>visibility</mat-icon>
+      </button>
+
+      <button mat-icon-button color="accent"
+              matTooltip="Download"
+              (click)="download(doc); $event.stopPropagation()">
+        <mat-icon>download</mat-icon>
+      </button>
+
+      <button mat-icon-button color="primary"
+              matTooltip="Edit"
+              (click)="edit(doc); $event.stopPropagation()">
+        <mat-icon>edit</mat-icon>
+      </button>
+
+      <!-- <button mat-icon-button color="warn"
+              matTooltip="Delete"
+              (click)="delete(doc); $event.stopPropagation()">
+        <mat-icon>delete</mat-icon>
+      </button> -->
+
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let row" [attr.colspan]="columns.length">
+
+      <div class="details" *ngIf="expandedElement === row">
+
+        <h4>Line Items</h4>
+
+        <table class="inner-table" *ngIf="row.lineItems?.length">
+
+          <tr>
+            <th>Description</th>
+            <th>Qty</th>
+            <th>Unit Price</th>
+            <th>Total</th>
+          </tr>
+
+          <tr *ngFor="let item of row.lineItems">
+            <td>{{ item.description }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.unitPrice }}</td>
+            <td>{{ item.lineTotal }}</td>
+          </tr>
+
+        </table>
+
+        <p *ngIf="!row.lineItems?.length">No line items</p>
+
+        <h4>Validation Issues</h4>
+
+        <ul *ngIf="row.validationIssues?.length; else noIssues">
+          <li *ngFor="let issue of row.validationIssues">
+            ⚠ {{ issue }}
+          </li>
+        </ul>
+
+        <ng-template #noIssues>
+          <p class="ok">No issues ✅</p>
+        </ng-template>
+
+      </div>
+
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columns"></tr>
+
+  <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+
+  <tr mat-row
+      *matRowDef="let row; columns: ['expandedDetail']"
+      class="detail-row"
+      [style.display]="expandedElement === row ? 'table-row' : 'none'">
+  </tr>
+
+</table>
+
+</div>
+
+<mat-paginator
+  [length]="totalElements"
+  [pageSize]="size"
+  [pageSizeOptions]="[5, 10, 20]"
+  (page)="onPageChange($event)">
+</mat-paginator>

@@ -1,0 +1,24 @@
+.container {
+  height: calc(100vh - 64px);
+}
+
+.sidenav {
+  width: 260px;
+  background: #ffffff;
+}
+
+.content {
+  padding: 20px;
+  background: #f5f6fa;
+  min-height: 100%;
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 10px;
+  }
+
+  .sidenav {
+    width: 250px;
+  }
+}

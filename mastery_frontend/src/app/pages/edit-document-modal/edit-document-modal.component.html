@@ -1,0 +1,129 @@
+
+<h2 mat-dialog-title>Edit Document</h2>
+
+<mat-dialog-content [formGroup]="form" class="dialog-content">
+
+  <div class="section">
+    <h3>General Info</h3>
+
+    <div class="grid">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Document Type</mat-label>
+        <mat-select formControlName="documentType">
+          <mat-option value="INVOICE">Invoice</mat-option>
+          <mat-option value="PURCHASE_ORDER">Purchase Order</mat-option>
+          <mat-option value="UNKNOWN">Unknown</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Supplier</mat-label>
+        <input matInput formControlName="supplierName">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Document Number</mat-label>
+        <input matInput formControlName="documentNumber">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Currency</mat-label>
+        <input matInput formControlName="currency">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Issue Date</mat-label>
+        <input matInput type="date" formControlName="issueDate">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Due Date</mat-label>
+        <input matInput type="date" formControlName="dueDate">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Subtotal</mat-label>
+        <input matInput type="number" formControlName="subtotal">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Tax</mat-label>
+        <input matInput type="number" formControlName="tax">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Total</mat-label>
+        <input matInput type="number" formControlName="total">
+      </mat-form-field>
+
+    </div>
+  </div>
+
+  <div class="section">
+
+    <div class="section-header">
+      <h3>Line Items</h3>
+
+      <button mat-raised-button color="primary" (click)="addItem()">
+        + Add Item
+      </button>
+    </div>
+
+    <div class="items-header">
+      <div>Description</div>
+      <div>Qty</div>
+      <div>Price</div>
+      <div>Tax %</div>
+      <div>Total</div>
+      <div></div>
+    </div>
+
+    <div class="items-wrapper" formArrayName="lineItems">
+
+      <div *ngFor="let item of lineItems.controls; let i = index"
+           [formGroupName]="i"
+           class="item-card">
+
+        <div class="item-grid">
+
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="description">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <input matInput type="number" formControlName="quantity">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <input matInput type="number" formControlName="unitPrice">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <input matInput type="number" formControlName="taxRate">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <input matInput type="number" formControlName="lineTotal">
+          </mat-form-field>
+
+          <div class="delete-btn">
+            <button mat-icon-button color="warn" (click)="removeItem(i)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="save()">Save</button>
+</mat-dialog-actions>

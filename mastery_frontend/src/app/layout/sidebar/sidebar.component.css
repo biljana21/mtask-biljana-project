@@ -1,0 +1,27 @@
+.sidebar {
+  padding: 10px;
+}
+
+a.mat-mdc-list-item {
+  border-radius: 10px;
+  margin: 5px 0;
+  transition: background 0.2s ease;
+}
+
+mat-icon {
+  margin-right: 10px;
+}
+
+a.mat-mdc-list-item:hover {
+  background: #f3f3f3;
+}
+
+.active-link {
+  background: #e3f2fd !important;
+  color: #1976d2 !important;
+  font-weight: 500;
+}
+
+.active-link mat-icon {
+  color: #1976d2;
+}

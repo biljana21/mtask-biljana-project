@@ -1,0 +1,12 @@
+export enum DocumentStatus {
+  UPLOADED = 'UPLOADED',
+  NEEDS_REVIEW = 'NEEDS_REVIEW',
+  VALIDATED = 'VALIDATED',
+  REJECTED = 'REJECTED'
+}
+
+export enum DocumentType {
+  INVOICE = 'INVOICE',
+  PURCHASE_ORDER = 'PURCHASE_ORDER',
+  UNKNOWN = 'UNKNOWN'
+}
