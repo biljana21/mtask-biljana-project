@@ -1,0 +1,16 @@
+2026-05-03T12:40:31.152+02:00  INFO 22328 --- [backend] [main] com.mastery_task.BackendApplication      : Starting BackendApplication using Java 17.0.16 with PID 22328 (C:\Users\BILJANA\Desktop\mastery_task_final\backend\target\classes started by BILJANA in C:\Users\BILJANA\Desktop\mastery_task_final\backend)
+2026-05-03T12:40:31.172+02:00  INFO 22328 --- [backend] [main] com.mastery_task.BackendApplication      : No active profile set, falling back to 1 default profile: "default"
+2026-05-03T12:40:34.300+02:00  INFO 22328 --- [backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-03T12:40:34.302+02:00  INFO 22328 --- [backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-05-03T12:40:35.509+02:00  INFO 22328 --- [backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-03T12:40:36.295+02:00  INFO 22328 --- [backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2954c429
+2026-05-03T12:40:36.299+02:00  INFO 22328 --- [backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-03T12:40:39.880+02:00  WARN 22328 --- [backend] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-03T12:40:40.347+02:00  INFO 22328 --- [backend] [main] com.mastery_task.BackendApplication      : Started BackendApplication in 10.262 seconds (process running for 12.856)
+2026-05-03T12:42:08.616+02:00  INFO 22328 --- [backend] [http-nio-9005-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-03T12:42:09.536+02:00  WARN 22328 --- [backend] [http-nio-9005-exec-1] ration$PageModule$WarningLoggingModifier : Serializing PageImpl instances as-is is not supported, meaning that there is no guarantee about the stability of the resulting JSON structure!
+	For a stable JSON structure, please use Spring Data's PagedModel (globally via @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO))
+	or Spring HATEOAS and Spring Data's PagedResourcesAssembler as documented in https://docs.spring.io/spring-data/commons/reference/repositories/core-extensions.html#core.web.pageables.
+
+2026-05-03T12:44:51.772+02:00  INFO 22328 --- [backend] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-05-03T12:44:51.785+02:00  INFO 22328 --- [backend] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

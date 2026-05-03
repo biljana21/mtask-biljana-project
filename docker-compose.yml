@@ -1,0 +1,37 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: mastery-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "9xK!pL2@dF"
+      MYSQL_DATABASE: mastery_task_db
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  backend:
+    build: ./backend
+    container_name: mastery-backend
+    depends_on:
+      - mysql
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/mastery_task_db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: "9xK!pL2@dF"
+      TESSERACT_DATAPATH: /usr/share/tesseract-ocr/5/tessdata
+    ports:
+      - "9005:9005"
+    volumes:
+      - uploaded_files:/root/Documents/document-processing
+
+  frontend:
+    build: ./mastery_frontend
+    container_name: mastery-frontend
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
+
+volumes:
+  mysql_data:
+  uploaded_files:

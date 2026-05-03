@@ -1,0 +1,25 @@
+# Node / Angular
+node_modules/
+dist/
+.angular/
+.log
+
+# Environment
+.env
+.env.
+
+# IntelliJ / VS Code
+.idea/
+.vscode/
+*.iml
+
+# Java / Spring
+target/
+*.class
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+*.env
